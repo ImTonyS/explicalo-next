@@ -1,5 +1,5 @@
 import { Navbar } from "./Navbar";
-
+import Link from "next/link";
 export function Hero() {
   return (
     <>
@@ -31,7 +31,7 @@ export function Hero() {
 
               {/* Buttons */}
               <div className="mt-12 gap-3 flex justify-center">
-                <a
+                <Link
                   className="py-3 px-6 inline-flex items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent bg-exp-blue text-white hover:bg-exp-light-blue hover:text-black disabled:opacity-50 disabled:pointer-events-none"
                   href="/post"
                 >
@@ -50,8 +50,8 @@ export function Hero() {
                   >
                     <path d="m9 18 6-6-6-6" />
                   </svg>
-                </a>
-                <a
+                </Link>
+                <Link
                   className="py-3 px-4 inline-flex items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent text-exp-light-blue hover:bg-gray-100 hover:text-exp-blue disabled:opacity-50 disabled:pointer-events-none"
                   href="/descubre"
                 >
@@ -70,7 +70,7 @@ export function Hero() {
                     />
                   </svg>
                   Descubre
-                </a>
+                </Link>
               </div>
               {/* End Buttons */}
             </div>

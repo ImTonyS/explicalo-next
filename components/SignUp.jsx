@@ -1,5 +1,6 @@
 import LoginBtn from "./LoginBtn";
 import { useState } from "react";
+import Link from "next/link";
 
 export default function SignUp() {
   const [formData, setFormData] = useState({
@@ -22,12 +23,12 @@ export default function SignUp() {
             </h1>
             <p className="mt-2 text-sm text-gray-600">
               ¿No tienes cuenta aún?{" "}
-              <a
+              <Link
                 className="text-blue-600 decoration-2 hover:underline font-medium"
                 href="/signIn"
               >
                 Registrate aquí
-              </a>
+              </Link>
             </p>
           </div>
           <div className="mt-5">
