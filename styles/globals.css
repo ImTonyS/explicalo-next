@@ -35,3 +35,6 @@ body {
 .card-container {
   overflow-y: auto; /* Permite el scroll vertical */
 }
+
+.card {
+}
