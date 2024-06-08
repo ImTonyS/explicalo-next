@@ -31,3 +31,7 @@ body {
     text-wrap: balance;
   }
 }
+
+.card-container {
+  overflow-y: auto; /* Permite el scroll vertical */
+}

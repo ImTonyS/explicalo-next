@@ -3,7 +3,6 @@ import { Navbar } from "./Navbar";
 export function Hero() {
   return (
     <>
-
       <div className="min-h-screen overflow-hidden">
         {/* Gradients */}
         <div aria-hidden="true" className="flex absolute -z-10 top-0">
@@ -54,7 +53,7 @@ export function Hero() {
                 </a>
                 <a
                   className="py-3 px-4 inline-flex items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent text-exp-light-blue hover:bg-gray-100 hover:text-exp-blue disabled:opacity-50 disabled:pointer-events-none"
-                  href="#"
+                  href="/descubre"
                 >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"

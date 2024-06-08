@@ -1,4 +1,3 @@
-
 import LoginBtn from "./LoginBtn";
 import { useState } from "react";
 
@@ -10,13 +9,13 @@ export function SignIn() {
   });
 
   const handleChange = (e) => {
-      setFormData({ ...formData, [e.target.name]: e.target.value });
+    setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e) => {
+  async function handleSubmit(e) {
     e.preventDefault();
-    
-    const response = fetch("/api/users", {
+
+    const response = await fetch("/api/users", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -25,12 +24,14 @@ export function SignIn() {
     });
 
     if (response.ok) {
-      console.log("Usuario creado");
+      window.location.href = "/indexSU";
+    } else {
+      alert("Error al registrar usuario");
+      setFormData({ email: "", password: "", confirmPassword: "" });
     }
   }
 
-  const reg = new RegExp("^(?=.*[A-Z])(?=.*[!@#$&*])(?=.*[0-9])(?=.*[a-z]).{8}$");
-
+  //const reg = new RegExp("^(?=.*[A-Z])(?=.*[!@#$&*])(?=.*[0-9])(?=.*[a-z]).{8}$");
 
   return (
     <section className="flex justify-center items-center h-screen bg-gradient-to-tl from-exp-blue to-black blur-6xl">
@@ -63,7 +64,6 @@ export function SignIn() {
                 <div>
                   <label
                     htmlFor="email"
-                    
                     className=" text-gray-400 block text-sm mb-2"
                   >
                     Correo Electrónico
@@ -118,7 +118,7 @@ export function SignIn() {
                       className="py-3 px-4 block w-full border border-gray-200 rounded-lg text-black text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none"
                       required
                       aria-describedby="password-error"
-                      pattern={reg.source}
+                      //pattern={reg.source}
                       title={`
                         La contraseña debe contener al menos:
                         1 mayúscula
@@ -167,7 +167,7 @@ export function SignIn() {
                       className="py-3 px-4 block w-full border border-gray-200 rounded-lg text-black text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none"
                       required
                       aria-describedby="confirm-password-error"
-                      pattern={reg.source}
+                      //pattern={reg.source}
                       title={`
                         La contraseña debe contener al menos:
                         1 mayúscula

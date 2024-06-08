@@ -1,4 +1,5 @@
 import LoginBtn from "./LoginBtn";
+import { useState } from "react";
 
 export default function SignUp() {
   const [formData, setFormData] = useState({
@@ -6,10 +7,10 @@ export default function SignUp() {
     password: "",
     confirmPassword: "",
   });
-  
+
   const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value })
-  }
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
 
   return (
     <section className="flex justify-center items-center h-screen bg-gradient-to-tl from-exp-blue to-black blur-6xl">

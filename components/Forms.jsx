@@ -1,10 +1,40 @@
+import { useState } from "react";
 export default function Forms() {
+  const [formData, setFormData] = useState({
+    name: "",
+    categoria: "",
+    titulo: "",
+    contenido: "",
+  });
+
+  const handleChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    const response = await fetch("/api/posts", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(formData),
+    });
+    if (response.ok) {
+      window.location.href = "/descubre";
+      setFormData({ ...formData, [e.target.name]: "" });
+    } else {
+      alert("Error al subir el post");
+    }
+  };
+
   return (
     <section className="min-h-screen flex items-center justify-center bg-gradient-to-tl from-exp-blue to-black blur-6xl">
       <div className="w-full sm:max-w-4xl  px-4 py-20 sm:px-6 lg:px-8 lg:py-40 ">
         {/* Card */}
         <div className="bg-white rounded-xl shadow p-4 sm:p-7">
-          <form>
+          <form onSubmit={handleSubmit}>
             {/* Section */}
             <div className="flex flex-col flex-wrap space-x-6 py-8 first:pt-0 last:pb-0 border-t first:border-transparent border-gray-200">
               <div className="mx-auto ">
@@ -23,6 +53,7 @@ export default function Forms() {
                 <input
                   id="name"
                   name="name"
+                  onChange={handleChange}
                   type="text"
                   className="text-black py-2 px-3 pe-11 block w-full border border-gray-200 shadow-sm -mt-px -ms-px first:rounded-t-lg last:rounded-b-lg sm:first:rounded-s-lg sm:mt-0 sm:first:ms-0 sm:first:rounded-se-none sm:last:rounded-es-none sm:last:rounded-e-lg text-sm relative focus:z-10 focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none"
                 />
@@ -39,12 +70,13 @@ export default function Forms() {
                 <select
                   id="categoria"
                   name="categoria"
+                  onChange={handleChange}
                   className="text-black py-2 px-2 pe-11 block w-full border border-gray-200 shadow-sm text-sm rounded-lg focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none"
                 >
-                  <option value="1">Escoge una opcion</option>
-                  <option value="2">Finanzas</option>
-                  <option value="3">Estilo de vida</option>
-                  <option value="4">Programación</option>
+                  <option value="0">Escoge una opcion</option>
+                  <option value="Finanzas">Finanzas</option>
+                  <option value="Estilo">Estilo de vida</option>
+                  <option value="Programacion">Programación</option>
                 </select>
               </div>
               {/* End Col */}
@@ -55,16 +87,17 @@ export default function Forms() {
                     name="intro"
                     className="inline-block text-sm font-medium text-gray-500 mt-2.5"
                   >
-                    Introducción
+                    Titulo
                   </label>
                 </div>
               </div>
               {/* End Col */}
               <div>
                 <input
-                  id="intro"
-                  name="intro"
+                  id="titulo"
+                  name="titulo"
                   type="text"
+                  onChange={handleChange}
                   className="text-black py-2 px-3 pe-11 block w-full border border-gray-200 shadow-sm rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none"
                 />
               </div>
@@ -81,34 +114,9 @@ export default function Forms() {
                 </h2>
               </div>
               {/* End Col */}
-              <div className="sm:col-span-3">
-                <label
-                  id="imagen"
-                  name="imagen"
-                  className=" text-black inline-block text-sm font-medium text-gray-500 mt-2.5"
-                >
-                  Imagen (opcional)
-                </label>
-              </div>
+
               {/* End Col */}
-              <div className="sm:col-span-9">
-                <label
-                  htmlFor="af-submit-application-resume-cv"
-                  className="sr-only text-gray-500"
-                >
-                  Choose file
-                </label>
-                <input
-                  type="file"
-                  name="file"
-                  id="file"
-                  className="text-black block w-full border border-gray-200 shadow-sm rounded-lg text-sm focus:z-10 focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none
-      file:bg-gray-50 file:border-0
-      file:bg-gray-100 file:me-4
-      file:py-2 file:px-4
-     "
-                />
-              </div>
+
               {/* End Col */}
               <div className="sm:col-span-3">
                 <div className="inline-block">
@@ -128,6 +136,7 @@ export default function Forms() {
                   name="contenido"
                   className="py-2 px-3 block text-black w-full border border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none"
                   rows={6}
+                  onChange={handleChange}
                   placeholder="Agrega tu explicacion."
                   defaultValue={""}
                 />
