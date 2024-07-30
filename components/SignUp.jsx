@@ -13,7 +13,6 @@ export default function SignUp() {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-
   return (
     <section className="flex justify-center items-center h-screen bg-gradient-to-tl from-exp-blue to-black blur-6xl">
       <div className="w-3/4 lg:w-2/6 max-h-3/4 mt-7 bg-white border border-gray-200 rounded-xl shadow-sm">
@@ -123,11 +122,10 @@ export default function SignUp() {
                 {/* End Checkbox */}
                 <Link
                   type="submit"
-                  href={'/indexSU'}
+                  href={"/indexSU"}
                   className="w-full py-3 px-4 inline-flex justify-center items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent bg-blue-600 text-white hover:bg-blue-700 disabled:opacity-50 disabled:pointer-events-none"
                 >
                   Inicia Sesion
-                 
                 </Link>
               </div>
             </form>
